@@ -1,0 +1,77 @@
+<html>
+
+<head>
+    <style>
+        img {
+            width: 100%;
+            height: auto;
+        }
+        audio {
+            width: 100%;
+        }
+        #visual,
+        #slider {
+            width: 45%;
+            display: inline-block;
+            float: left;
+        }
+    </style>
+</head>
+
+<body>
+    <audio id="lessonAudio" controls>
+        <source src="/guitar.mp3" type="audio/mpeg">
+    </audio>
+    <br>
+    <div id="visual">
+        <img src="">
+    </div>
+    <div id="slider">
+
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha256-pasqAKBDmFT4eHoN2ndd6lN370kFiGUFyTiUHWhU7k8=" crossorigin="anonymous"></script>
+
+    <script>
+        var audio = document.getElementById("lessonAudio");
+        var Segments = {
+            0: {
+                'image': 'image-1.jpg',
+                'time': '0'
+            },
+            1: {
+                'image': 'image-2.jpg',
+                'time': '5'
+            },
+            2: {
+                'image': 'image-3.jpg',
+                'time': '12'
+            }
+        };
+
+        // console.log(obj[0].image);
+
+        updateImage();
+        audio.ontimeupdate = function () { updateImage() };
+        function updateImage() {
+            var image = Segments[0].image;
+            var activeSegment = 1;
+            var sec = Math.round(audio.currentTime);
+            var i;
+            for (i = 0; i < Object.keys(Segments).length; i++) {
+                if (sec >= Segments[i].time) {
+                    image = Segments[i].image
+                    activeSegment = i
+                }
+            }
+            console.log(image);
+            console.log(activeSegment);
+            $('#visual img').attr('src', image)
+        }
+
+
+    </script>
+</body>
+
+</html>
