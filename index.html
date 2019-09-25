@@ -26,9 +26,6 @@
     <div id="visual">
         <img src="">
     </div>
-    <div id="slider">
-
-    </div>
 
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
         integrity="sha256-pasqAKBDmFT4eHoN2ndd6lN370kFiGUFyTiUHWhU7k8=" crossorigin="anonymous"></script>
@@ -53,7 +50,9 @@
         // console.log(obj[0].image);
 
         updateImage();
+
         audio.ontimeupdate = function () { updateImage() };
+        
         function updateImage() {
             var image = Segments[0].image;
             var activeSegment = 1;
